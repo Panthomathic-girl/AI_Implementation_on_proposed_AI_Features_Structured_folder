@@ -22,17 +22,23 @@ class ModelConfig:
     LEAD_MODEL_FILE = "app/predictive_lead_score/models/deal_closure_model.pkl"
     ORDER_FORECAST_MODEL_FILE = Path("app/order_forecasting/models/order_forecast_model.pkl") 
     
-    
-TASKTYPE = Literal[
-    "scheduling",           
-    "follow_up_email",      
-    "send_proposal",        
-    "demo_scheduling",      
-    "internal_review",      
-    "contract_preparation", 
-    "training_session",     
-    "payment_followup",    
-    "feedback_request"      
-]
+
+TASKTYPE = Literal["call", "email", "meeting", "administrative", "follow up"]
+PriorityType = Literal["low", "medium", "high", "urgent"]
+StatusType = Literal["not started", "in progress", "completed", "waiting", "deferred"]
+
+TASK_TYPE_MAPPING = {
+    "internal meeting": "meeting",
+    "internal task": "administrative",
+    "demo": "meeting",
+    "presentation": "meeting",
+    "follow-up": "follow up",
+    "followup": "follow up",
+    "send email": "email",
+    "make a call": "call",
+    "schedule call": "call",
+    "admin": "administrative",
+    "administrative task": "administrative",
+}
 
 settings = Settings()
